@@ -221,7 +221,7 @@ class Game(object):
             self.t_rex.start_jump(self.current_speed)
         if (
                 not self.crashed and self.playing and
-                (event.key == pygame.K_UP or event.key == pygame.K_x)
+                (event.key == pygame.K_UP)
         ):
             if not self.t_rex.jumping and not self.t_rex.ducking:
                 self.button_press_sound.play()
@@ -231,7 +231,7 @@ class Game(object):
         if (
                 self.playing and
                 not self.crashed and
-                (event.key == pygame.K_DOWN or event.key == pygame.K_b)
+                (event.key == pygame.K_DOWN)
         ):
             if self.t_rex.jumping:
                 self.t_rex.set_speed_drop()
@@ -242,10 +242,10 @@ class Game(object):
         """
         Process key up.
         """
-        is_jump_key = (event.key == pygame.K_UP or event.key == pygame.K_x)
+        is_jump_key = (event.key == pygame.K_UP)
         if is_jump_key:
             self.t_rex.end_jump()
-        elif event.key == pygame.K_DOWN or event.key == pygame.K_b:
+        elif event.key == pygame.K_DOWN:
             self.t_rex.speed_drop = False
             self.t_rex.set_duck(False)
         elif self.crashed:
@@ -253,7 +253,7 @@ class Game(object):
             if (
                     event.key == pygame.K_RETURN or
                     (delta_time >= self.config["GAMEOVER_CLEAR_TIME"] and
-                     (event.key == pygame.K_UP or event.key == pygame.K_x))
+                     (event.key == pygame.K_UP))
             ):
                 self.restart()
         elif self.paused and is_jump_key:
